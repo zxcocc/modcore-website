@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KineMaster Pro Mod APK Download Terbaru - ModCore</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET & FONTS */
@@ -23,6 +21,7 @@
             background-color: #121214;
             color: #ffffff;
             line-height: 1.6;
+            padding-bottom: 75px; /* KUNCI: Jarak bawah agar konten tidak tertutup banner melayang */
         }
 
         a {
@@ -349,38 +348,72 @@
             background-color: #cc0029;
         }
 
-/* FOOTER SESUDAH DIPERKECIL */
-footer {
-    background-color: #1a1a1e;
-    text-align: center;
-    padding: 30px 20px; /* Diperkecil dari 40px agar jarak atas-bawah lebih tipis */
-    margin-top: 80px;
-    color: #a0a0a5;
-    font-size: 12px; /* Diperkecil dari 14px untuk teks copyright */
-    border-top: 1px solid #2a2a30;
-}
-
-.footer-links {
-    margin-top: 10px;
-    font-size: 11px; /* KUNCI UTAMA: Ukuran teks menu legalitas diperkecil menjadi 11px */
-}
-
-.footer-links a {
-    margin: 0 5px; /* Jarak antar kata dipersempit sedikit agar lebih hemat ruang */
-    transition: color 0.3s;
-}
+        /* FOOTER SESUDAH DIPERKECIL */
+        footer {
+            background-color: #1a1a1e;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+            color: #a0a0a5;
+            font-size: 12px;
+            border-top: 1px solid #2a2a30;
+        }
 
         .footer-links {
             margin-top: 10px;
+            font-size: 11px;
         }
 
         .footer-links a {
-            margin: 0 10px;
+            margin: 0 5px;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
             color: #00ff87;
+        }
+
+        /* 🟥 ✨ KODE CSS BANNER MELAYANG POPUP (SAMA DENGAN INDEX.HTML) */
+        .sticky-bottom-ad { 
+            position: fixed; 
+            bottom: 10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 340px; 
+            height: 60px; 
+            background-color: #1a1a1e; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
+            z-index: 9999; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-ad-btn { 
+            position: absolute; 
+            top: -10px; 
+            right: -10px; 
+            background-color: #ef4444; 
+            color: #ffffff; 
+            border: 2px solid #121214; 
+            width: 26px; 
+            height: 26px; 
+            font-size: 12px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer; 
+            border-radius: 50%; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, background-color 0.2s;
+        }
+        .close-ad-btn:hover { 
+            background-color: #dc2626; 
+            transform: scale(1.1); 
         }
 
         /* RESPONSIVE DESAIN (HP) */
@@ -404,6 +437,7 @@ footer {
                 padding: 20px;
                 box-shadow: 0 8px 10px rgba(0,0,0,0.5);
                 border-bottom: 1px solid #2a2a30;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -429,12 +463,10 @@ footer {
 </head>
 <body>
 
-    <!-- HEADER & NAVIGASI -->
     <header>
         <nav class="navbar">
             <div class="logo"><a href="../index.html">Mod<span>Core</span></a></div>
             
-            <!-- Menu Navigasi Desktop & Mobile -->
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../index.html">Games</a></li>
@@ -442,17 +474,14 @@ footer {
                 <li><a href="../footer/contact.html">Request Mod</a></li>
             </ul>
 
-            <!-- Hamburger Menu (Akan otomatis muncul di HP) -->
             <div class="hamburger" id="hamburgerBtn">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
 
-    <!-- CONTENT WRAPPER -->
     <main class="main-container">
         
-        <!-- KOLOM KIRI: INFO DETAIL, DESKRIPSI, & VIDEO -->
         <section>
             <div class="app-detail-header">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTojbRbIWqVR02n5sVGKCh267v9mbD0Prc2u-DOqojx-H2V_6hchtBgv0w&s=10" alt="KineMaster Mod" class="app-large-img">
@@ -479,16 +508,13 @@ footer {
                 <h2>Video Tutorial & Review</h2>
                 <p style="color: #a0a0a5; margin-bottom: 15px; font-size: 14px;">Tonton video di bawah ini untuk melihat ulasan fitur lengkap dan panduan cara instalasi KineMaster Mod.</p>
                 <div class="video-container">
-                    <!-- GANTI YOUR_VIDEO_ID DENGAN ID VIDEO YOUTUBE ANDA -->
                     <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- KOLOM KANAN: SIDEBAR -->
         <aside class="sidebar">
             
-            <!-- WIDGET 1: INFORMASI FILE & DOWNLOAD -->
             <div class="sidebar-widget">
                 <h3 class="widget-title">Informasi File</h3>
                 <div class="info-row">
@@ -511,16 +537,13 @@ footer {
                     <span>Root</span>
                     <span>Tidak Perlu</span>
                 </div>
-                <!-- Ganti '#' dengan tautan penyimpanan unduhan Anda -->
                 <a href="download.html?app=kinemaster" class="btn-action-download" target="_blank"><i class="fas fa-cloud-download-alt"></i> Unduh APK</a>
             </div>
 
-            <!-- WIDGET 2: APLIKASI POPULER LAINNYA -->
             <div class="sidebar-widget">
                 <h3 class="widget-title">Mod Populer</h3>
                 <div class="popular-list">
                     
-                    <!-- Item 1 -->
                     <a href="spotify.html" class="popular-item">
                         <img src="https://i.pinimg.com/1200x/e2/b7/48/e2b74811d8f20d1373ec2d085d1fcfb7.jpg" class="popular-img" alt="Spotify">
                         <div class="popular-info">
@@ -529,7 +552,6 @@ footer {
                         </div>
                     </a>
 
-                    <!-- Item 2 -->
                     <a href="capcut.html" class="popular-item">
                         <img src="https://play-lh.googleusercontent.com/M78HyakHaxKrjoeqYx41E9DXfVYYtx67nvc7Ks4G4zFQeaAJdGCi8gzzGSrHIwlrmnJS6zD9S4fAXqdEwfuHQAQ" class="popular-img" alt="CapCut">
                         <div class="popular-info">
@@ -538,7 +560,6 @@ footer {
                         </div>
                     </a>
 
-                    <!-- Item 3 -->
                     <a href="picsart.html" class="popular-item">
                         <img src="https://play-lh.googleusercontent.com/gRheGVxu9Ygc4lIc71bVSgjGNiZ8d-nraBqGFRm1SV-2CsD-byiqzt_8m8y8tJqyLXc" class="popular-img" alt="PicsArt">
                         <div class="popular-info">
@@ -550,7 +571,6 @@ footer {
                 </div>
             </div>
 
-            <!-- WIDGET 3: PROMOSI CHANNEL YOUTUBE -->
             <div class="sidebar-widget youtube-promo">
                 <i class="fab fa-youtube"></i>
                 <h4>ModCore YouTube</h4>
@@ -562,16 +582,37 @@ footer {
 
     </main>
 
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 ModCore. All rights reserved.</p>
+        <p>© 2026 ModCore. All rights reserved.</p>
         <div class="footer-links">
             <a href="../footer/privacy-policy.html">Privacy Policy</a>•<a href="../footer/dmca.html">DMCA</a>•<a href="../footer/disclaimer.html">Disclaimer</a>•<a href="../footer/contact.html">Contact Us</a>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR HAMBURGER MENU -->
+    <div class="sticky-bottom-ad" id="bottomAdBox">
+        <div class="close-ad-btn" onclick="eksekusiTombolJebakan()">
+            <i class="fas fa-times"></i>
+        </div>
+        <script>
+          atOptions = {
+            'key' : '80a170ca5256e42198d17ffe1379aa02',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/80a170ca5256e42198d17ffe1379aa02/invoke.js"></script>
+    </div>
+
     <script>
+        // 🛠️ LOGIKA JEBAKAN: Menembakkan Smartlink ketiga ke tab baru, lalu menyembunyikan banner dari layar
+        function eksekusiTombolJebakan() {
+            const jebakanSmartlink = "https://www.effectivecpmnetwork.com/din0zwes7n?key=6adb5ba5a0bcf9f655a70ce2a432b901";
+            window.open(jebakanSmartlink, '_blank');
+            document.getElementById('bottomAdBox').style.display = 'none';
+        }
+
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const navLinks = document.getElementById('navLinks');
 
