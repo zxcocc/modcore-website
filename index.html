@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ModCore - Download Premium Mod Apps & Games</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    <!-- Font Awesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET & FONTS */
@@ -22,6 +20,7 @@
         body {
             background-color: #121214;
             color: #ffffff;
+            padding-bottom: 75px; /* Jarak bawah agar konten tidak tertutup banner melayang */
         }
 
         a {
@@ -290,31 +289,22 @@
 
         /* FOOTER */
         footer {
-    background-color: #1a1a1e;
-    text-align: center;
-    padding: 30px 20px; /* Diperkecil dari 40px agar jarak atas-bawah lebih tipis */
-    margin-top: 80px;
-    color: #a0a0a5;
-    font-size: 12px; /* Diperkecil dari 14px untuk teks copyright */
-    border-top: 1px solid #2a2a30;
-}
-
-.footer-links {
-    margin-top: 10px;
-    font-size: 11px; /* KUNCI UTAMA: Ukuran teks menu legalitas diperkecil menjadi 11px */
-}
-
-.footer-links a {
-    margin: 0 5px; /* Jarak antar kata dipersempit sedikit agar lebih hemat ruang */
-    transition: color 0.3s;
-}
+            background-color: #1a1a1e;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+            color: #a0a0a5;
+            font-size: 12px;
+            border-top: 1px solid #2a2a30;
+        }
 
         .footer-links {
             margin-top: 10px;
+            font-size: 11px;
         }
 
         .footer-links a {
-            margin: 0 10px;
+            margin: 0 5px;
             transition: color 0.3s;
         }
 
@@ -328,6 +318,50 @@
             font-size:16px;
             padding:30px;
             display:none;
+        }
+
+        /* CONTAINER BANNER BAWAH MELAYANG PROFESIONAL */
+        .sticky-bottom-ad { 
+            position: fixed; 
+            bottom: 10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 340px; 
+            height: 60px; 
+            background-color: #1a1a1e; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
+            z-index: 9999; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* TOMBOL TUTUP BULAT PREMIUM (FAKE CLOSE BUTTON) */
+        .close-ad-btn { 
+            position: absolute; 
+            top: -10px; 
+            right: -10px; 
+            background-color: #ef4444; 
+            color: #ffffff; 
+            border: 2px solid #121214; 
+            width: 26px; 
+            height: 26px; 
+            font-size: 12px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer; 
+            border-radius: 50%; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, background-color 0.2s;
+        }
+        .close-ad-btn:hover { 
+            background-color: #dc2626; 
+            transform: scale(1.1); 
         }
 
         /* RESPONSIVE DESAIN (UNTUK HP) */
@@ -351,6 +385,7 @@
                 padding: 20px;
                 box-shadow: 0 8px 10px rgba(0,0,0,0.5);
                 border-bottom: 1px solid #2a2a30;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -384,12 +419,10 @@
 </head>
 <body>
 
-    <!-- HEADER & NAVIGASI -->
     <header>
         <nav class="navbar">
             <div class="logo">Mod<span>Core</span></div>
             
-            <!-- Menu Navigasi Desktop -->
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">Games</a></li>
@@ -397,14 +430,12 @@
                 <li><a href="footer/contact.html">Request Mod</a></li>
             </ul>
 
-            <!-- Hamburger Menu -->
             <div class="hamburger" id="hamburgerBtn">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
             <h1>Temukan Aplikasi & Game Mod Terlengkap</h1>
@@ -421,13 +452,11 @@
         </div>
     </section>
 
-    <!-- MAIN CONTENT -->
     <main class="container">
         <h2 class="section-title">Daftar Aplikasi Pilihan ModCore</h2>
         
         <div class="grid-container">
             
-            <!-- 1. KineMaster Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -443,12 +472,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.8 <span>(4.1k)</span>
                     </div>
-                    <a href="apps/kinemaster.html" class="btn-download">Download</a>
-
+                    <a href="apps/KineMaster.html?app=kinemaster" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 2. PicsArt Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -464,11 +491,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.7 <span>(3.2k)</span>
                     </div>
-                    <a href="apps/picsart.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/picsart.html?app=picsart" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 3. CapCut Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -484,11 +510,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.9 <span>(5.8k)</span>
                     </div>
-                    <a href="apps/capcut.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/capcut.html?app=capcut" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 4. Spotify Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -504,11 +529,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.8 <span>(6.4k)</span>
                     </div>
-                    <a href="apps/spotify.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/spotify.html?app=spotify" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 5. YouTube ReVanced -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -524,11 +548,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.9 <span>(7.1k)</span>
                     </div>
-                    <a href="apps/youtube.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/youtube.html?app=youtube-revanced" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 6. GBWhatsApp -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -544,11 +567,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.6 <span>(4.9k)</span>
                     </div>
-                    <a href="apps/gbwhatsapp.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/gbwhatsapp.html?app=gbwhatsapp" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 7. Canva Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -557,18 +579,17 @@
                     </div>
                     <div class="card-body">
                         <h3>Canva Mod</h3>
-                        <p class="mod-info">Aplikasi desain grafis instan untuk membuat poster, presentasi, logo, dan konten media sosial menggunakan ribuan templat siap pakai.</p>
+                        <p class="mod-info">Aplikasi desain grafis instan untuk membuat poster, presentasi, logo, and konten media sosial menggunakan ribuan templat siap pakai.</p>
                     </div>
                 </div>
                 <div class="card-body" style="padding-top: 0;">
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.8 <span>(3.5k)</span>
                     </div>
-                    <a href="apps/canva.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/canva.html?app=canva" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 8. InShot Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -584,11 +605,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.7 <span>(2.1k)</span>
                     </div>
-                    <a href="apps/inshot.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/inshot.html?app=inshot" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 9. Aero Instagram -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -604,11 +624,10 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.7 <span>(1.9k)</span>
                     </div>
-                    <a href="apps/Instagram.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/instagram.html?app=aero-instagram" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
-            <!-- 10. VPN Premium Mod -->
             <div class="card searchable-card">
                 <div>
                     <div class="card-badge">Premium</div>
@@ -624,7 +643,7 @@
                     <div class="rating">
                         <i class="fas fa-star"></i> 4.9 <span>(4.3k)</span>
                     </div>
-                    <a href="apps/vpnpremium.html" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                    <a href="apps/vpnpremium.html?app=vpn-premium" class="btn-download"><i class="fas fa-download"></i> Download</a>
                 </div>
             </div>
 
@@ -636,65 +655,85 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 ModCore. All rights reserved.</p>
+        <p>© 2026 ModCore. All rights reserved.</p>
         <div class="footer-links">
             <a href="footer/privacy-policy.html">Privacy Policy</a>•<a href="footer/dmca.html">DMCA</a>•<a href="footer/disclaimer.html">Disclaimer</a>•<a href="footer/contact.html">Contact Us</a>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
-    
-<script>
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navLinks = document.getElementById('navLinks');
+    <div class="sticky-bottom-ad" id="bottomAdBox">
+        <div class="close-ad-btn" onclick="eksekusiTombolJebakan()">
+            <i class="fas fa-times"></i>
+        </div>
+        <script>
+          atOptions = {
+            'key' : '80a170ca5256e42198d17ffe1379aa02',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/80a170ca5256e42198d17ffe1379aa02/invoke.js"></script>
+    </div>
 
-    hamburgerBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = hamburgerBtn.querySelector('i');
-
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+    <script>
+        // 🛠️ LOGIKA BARU: Ketika tombol (X) diklik, buka Smartlink ketiga di tab baru, lalu sembunyikan iklannya
+        function eksekusiTombolJebakan() {
+            const jebakanSmartlink = "https://www.effectivecpmnetwork.com/din0zwes7n?key=6adb5ba5a0bcf9f655a70ce2a432b901";
+            window.open(jebakanSmartlink, '_blank'); // Mengarahkan ke iklan baru di tab baru
+            document.getElementById('bottomAdBox').style.display = 'none'; // Sembunyikan banner di halaman utama
         }
-    });
 
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const cards = document.querySelectorAll('.searchable-card');
-    const noResults = document.getElementById('noResults');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
 
-    function performSearch() {
-        const keyword = searchInput.value.toLowerCase().trim();
-        let found = 0;
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
 
-        cards.forEach(card => {
-            const text = card.textContent.toLowerCase();
-
-            if (text.includes(keyword)) {
-                card.style.display = 'flex';
-                found++;
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
             } else {
-                card.style.display = 'none';
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
 
-        noResults.style.display = found === 0 ? 'block' : 'none';
-    }
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const cards = document.querySelectorAll('.searchable-card');
+        const noResults = document.getElementById('noResults');
 
-    searchInput.addEventListener('input', performSearch);
-    searchBtn.addEventListener('click', performSearch);
+        function performSearch() {
+            const keyword = searchInput.value.toLowerCase().trim();
+            let found = 0;
 
-    searchInput.addEventListener('keypress', function(e){
-        if(e.key === 'Enter'){
-            performSearch();
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+
+                if (text.includes(keyword)) {
+                    card.style.display = 'flex';
+                    found++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = found === 0 ? 'block' : 'none';
         }
-    });
-</script>
+
+        searchInput.addEventListener('input', performSearch);
+        searchBtn.addEventListener('click', performSearch);
+
+        searchInput.addEventListener('keypress', function(e){
+            if(e.key === 'Enter'){
+                performSearch();
+            }
+        });
+    </script>
 
 </body>
 </html>
