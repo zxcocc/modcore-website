@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengamankan Tautan Unduhan - ModCore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #121214; color: #ffffff; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: #1a1a1e; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1100px; margin: 0 auto; width: 100%; }
+        .logo { font-size: 22px; font-weight: bold; }
+        .logo span { color: #00ff87; }
+        
+        .container { max-width: 600px; margin: 50px auto; padding: 0 20px; text-align: center; flex: 1; }
+        .safelink-box { background-color: #1a1a1e; padding: 40px 30px; border-radius: 14px; border: 1px solid #2a2a30; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        
+        h1 { font-size: 22px; margin-bottom: 10px; font-weight: 700; }
+        p { color: #a0a0a5; font-size: 14px; margin-bottom: 25px; }
+        
+        /* TEMPAT IKLAN */
+        .ad-slot { background-color: #252529; border: 1px dashed #3a3a42; padding: 20px; margin: 20px 0; border-radius: 8px; color: #646469; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .countdown { font-size: 48px; font-weight: 800; color: #00ff87; margin: 20px 0; font-variant-numeric: tabular-nums; }
+        
+        .btn-download { display: inline-block; background-color: #3a3a42; color: #a0a0a5; padding: 15px 40px; border-radius: 10px; font-weight: bold; font-size: 16px; transition: all 0.3s; cursor: not-allowed; border: none; width: 100%; text-align: center; }
+        .btn-download.active { background-color: #00ff87; color: #121214; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 255, 135, 0.3); }
+        .btn-download.active:hover { background-color: #00d16f; }
+
+        footer { background-color: #1a1a1e; text-align: center; padding: 25px 20px; color: #a0a0a5; font-size: 12px; border-top: 1px solid #2a2a30; }
+        .footer-links { margin-top: 8px; font-size: 11px; }
+        .footer-links a { margin: 0 4px; color: #a0a0a5; text-decoration: none; }
+        .footer-links a:hover { color: #00ff87; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container"><div class="logo">Mod<span>Core</span></div></div>
+    </header>
+
+    <div class="container">
+        <!-- 🔴 TEMPAT IKLAN ATAS (Contoh: Banner 728x90 atau 468x60) -->
+        <div class="ad-slot">Pajang Kode Iklan Banner Adsterra Di Sini (Atas)</div>
+
+        <div class="safelink-box">
+            <h1 id="status-title">Menyiapkan File Unduhan Aman...</h1>
+            <p>Silakan tunggu beberapa detik selagi sistem kami memverifikasi keamanan file APK dari virus.</p>
+            
+            <!-- Angka Hitung Mundur -->
+            <div class="countdown" id="timer">10</div>
+
+            <!-- 🔴 TEMPAT IKLAN TENGAH (Contoh: Banner Native atau 300x250) -->
+            <div class="ad-slot" style="min-height: 100px;">Pajang Kode Iklan Banner Adsterra Di Sini (Tengah)</div>
+
+            <!-- Tombol yang akan aktif setelah 10 detik -->
+            <a href="#" id="downloadBtn" class="btn-download">Mengunci Link...</a>
+        </div>
+
+        <!-- 🔴 TEMPAT IKLAN BAWAH -->
+        <div class="ad-slot">Pajang Kode Iklan Banner Adsterra Di Sini (Bawah)</div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ModCore. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="../footer/privacy-policy.html">Privacy Policy</a> • <a href="../footer/dmca.html">DMCA</a> • <a href="../footer/disclaimer.html">Disclaimer</a> • <a href="../footer/contact.html">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- INTERNALS JAVASCRIPT: DATABASE LINK & LOGIKA HITUNG MUNDUR -->
+    <script>
+        // 1. DATABASE LINK: DAFTAR TEMPAT MENYIMPAN LINK ASLI APLIKASI ANDA
+        // Ganti link di bawah ini dengan link MediaFire, Mega, atau Google Drive asli milik Anda
+        const linkDatabase = {
+            "kinemaster": "https://www.mediafire.com/file/5gn6e0smx961a4m/Kinemaster_v8.1.12.36540.GP_MOD_modded_1.com.apk/file",
+            "picsart": "https://www.mediafire.com/file/contoh-link-asli/picsart.apk",
+            "capcut": "https://www.mediafire.com/file/contoh-link-asli/capcut.apk",
+            "spotify": "https://www.mediafire.com/file/contoh-link-asli/spotify.apk",
+            "youtube-revanced": "https://www.mediafire.com/file/contoh-link-asli/youtube-revanced.apk",
+            "gbwhatsapp": "https://www.mediafire.com/file/contoh-link-asli/gbwhatsapp.apk",
+            "canva": "https://www.mediafire.com/file/contoh-link-asli/canva.apk",
+            "inshot": "https://www.mediafire.com/file/contoh-link-asli/inshot.apk",
+            "aero-instagram": "https://www.mediafire.com/file/contoh-link-asli/aero-instagram.apk",
+            "vpn-premium": "https://www.mediafire.com/file/contoh-link-asli/vpn-premium.apk"
+        };
+
+        // 2. LOGIKA MENDETEKSI PARAMETER URL (?app=nama_aplikasi)
+        const urlParams = new URLSearchParams(window.location.search);
+        const appKey = urlParams.get('app');
+
+        // Cari link asli berdasarkan database, jika tidak ditemukan alihkan ke index utama
+        const targetDownloadUrl = linkDatabase[appKey] || "../index.html";
+
+        // 3. LOGIKA HITUNG MUNDUR (TIMER)
+        let timeLeft = 10; // Durasi tunggu dalam hitungan detik
+        const timerElement = document.getElementById('timer');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const statusTitle = document.getElementById('status-title');
+
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                timerElement.style.display = 'none'; // Sembunyikan angka timer
+                statusTitle.textContent = "File APK Siap Diunduh!";
+                
+                // Aktifkan tombol download asli
+                downloadBtn.href = targetDownloadUrl;
+                downloadBtn.className = "btn-action-download btn-download active";
+                downloadBtn.innerHTML = '<i class="fas fa-cloud-download-alt"></i> Unduh APK Sekarang';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
