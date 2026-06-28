@@ -3,417 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModCore - Download Premium Mod Apps & Games</title>
+    <title>ModCore - Premium App Market</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    
     <style>
-        /* RESET & FONTS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        :root {
+            --bg-body: #0b0c0f;
+            --bg-surface: #13141a;
+            --bg-search: #1c1e24;
+            --accent-green: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #9aa0a6;
+            --border-color: rgba(255, 255, 255, 0.04);
+        }
+
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: #121214;
-            color: #ffffff;
-            padding-bottom: 75px; /* Jarak bawah agar konten tidak tertutup banner melayang */
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            padding-bottom: 100px;
+            overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* NAVBAR */
         header {
-            background-color: #1a1a1e;
+            background-color: var(--bg-surface);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 16px 20px;
+        }
+
+        .navbar::after {
+            content: ""; display: table; clear: both;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 1px;
+            float: left;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            cursor: pointer;
         }
 
         .logo span {
-            color: #00ff87; /* Warna hijau neon */
+            color: var(--accent-green);
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
+        .menu-links {
+            float: right;
+            padding-top: 2px;
         }
 
-        .nav-links li {
-            margin-left: 25px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: #00ff87;
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #ffffff;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(rgba(18, 18, 20, 0.85), #121214), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop') no-repeat center center/cover;
-            height: 380px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 36px;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .hero-content .subtitle {
-            color: #a0a0a5;
-            margin-bottom: 15px;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .hero-content .badges-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .hero-content .badge-info {
-            background-color: rgba(26, 26, 30, 0.6);
-            padding: 6px 16px;
+        .menu-links a {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 14px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: #e0e0e5;
+            transition: all 0.2s;
+            cursor: pointer;
         }
 
-        .search-box {
-            display: flex;
-            max-width: 500px;
+        .menu-links a.active {
+            color: var(--accent-green);
+            background-color: rgba(0, 230, 118, 0.06);
+        }
+
+        /* SCREEN MANAGEMENT TAB */
+        .index-tab {
+            display: none;
+            max-width: 600px;
             margin: 0 auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border-radius: 25px;
-            overflow: hidden;
+            padding: 12px 20px;
         }
 
-        .search-box input {
-            flex: 1;
-            padding: 15px 25px;
+        .index-tab.active {
+            display: block;
+        }
+
+        /* SEARCH BAR */
+        .search-wrapper {
+            background-color: var(--bg-search);
+            border-radius: 20px;
+            padding: 12px 16px;
+            border: 1px solid transparent;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .search-wrapper:focus-within {
+            border-color: rgba(0, 230, 118, 0.2);
+            background-color: var(--bg-surface);
+        }
+
+        .search-wrapper .material-symbols-outlined {
+            position: absolute;
+            left: 16px;
+            top: 12px;
+            color: var(--text-secondary);
+            font-size: 20px;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+            padding-left: 28px;
             border: none;
-            background-color: #1a1a1e;
-            color: #fff;
+            background: none;
+            color: var(--text-primary);
             outline: none;
             font-size: 14px;
+            font-weight: 500;
         }
 
-        .search-box button {
-            padding: 15px 30px;
-            border: none;
-            background-color: #00ff87;
-            color: #121214;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-size: 16px;
+        .section-header {
+            margin: 20px 0 16px 0;
+            padding-left: 2px;
         }
 
-        .search-box button:hover {
-            background-color: #00d16f;
-        }
-
-        /* MAIN CONTENT & CARDS */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .section-header::after {
+            content: ""; display: table; clear: both;
         }
 
         .section-title {
-            margin-bottom: 25px;
-            font-size: 24px;
-            border-left: 4px solid #00ff87;
-            padding-left: 12px;
+            float: left;
+            font-size: 15px;
             font-weight: 700;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: #1a1a1e;
-            border-radius: 14px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            border: 1px solid #2a2a30;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 255, 135, 0.15);
-            border-color: #3a3a40;
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background-color: #007bff; /* Penanda Premium */
-            color: #fff;
-            padding: 5px 12px;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 10;
-        }
-
-        .card-img-container {
-            width: 100%;
-            height: 160px;
-            background-color: #252529;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            border-bottom: 1px solid #2a2a30;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-            transition: opacity 0.3s;
-        }
-
-        .card:hover .card-img {
-            opacity: 1;
-        }
-
-        .card-body {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-body h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
+        .section-count {
+            float: right;
+            font-size: 12px;
+            color: var(--text-secondary);
             font-weight: 600;
         }
 
-        .mod-info {
-            font-size: 13px;
-            color: #a0a0a5;
-            margin-bottom: 15px;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
-
-        .rating {
-            font-size: 14px;
-            color: #f1c40f;
-            margin-bottom: 18px;
-            margin-top: auto;
-        }
-
-        .rating span {
-            color: #a0a0a5;
-            font-size: 12px;
-            margin-left: 5px;
-        }
-
-        .btn-download {
+        /* LIST APPLICATION ROW */
+        .apps-list {
             display: block;
-            text-align: center;
-            background-color: #28282e;
+        }
+
+        .app-row {
+            display: block;
+            background-color: var(--bg-surface);
+            border-radius: 16px;
             padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background 0.3s, color 0.3s;
-            border: 1px solid #3a3a42;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.15s, background-color 0.15s;
         }
 
-        .btn-download:hover {
-            background-color: #00ff87;
-            color: #121214;
-            border-color: #00ff87;
+        .app-row:after {
+            content: ""; display: table; clear: both;
         }
 
-        /* FOOTER */
-        footer {
-            background-color: #1a1a1e;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 80px;
-            color: #a0a0a5;
-            font-size: 12px;
-            border-top: 1px solid #2a2a30;
+        .app-row:active {
+            transform: scale(0.98);
+            background-color: var(--bg-search);
         }
 
-        .footer-links {
-            margin-top: 10px;
+        .icon-area {
+            float: left;
+            width: 60px;
+            height: 60px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            object-fit: cover;
+            background-color: var(--bg-search);
+            display: block;
+        }
+
+        .info-area {
+            margin-left: 74px;
+        }
+
+        .app-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .app-meta-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .badge-version {
+            font-size: 10px;
+            color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge-mod {
+            font-size: 10px;
+            color: var(--accent-green);
+            background-color: rgba(0, 230, 118, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+
+        .app-meta-bottom {
             font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .footer-links a {
-            margin: 0 5px;
-            transition: color 0.3s;
+        .app-meta-bottom .material-symbols-outlined {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
         }
 
-        .footer-links a:hover {
-            color: #00ff87;
+        /* LEGAL PASAL COMPONENT BOX */
+        .legal-card {
+            background-color: var(--bg-surface);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            margin-top: 10px;
         }
 
-        .no-results{
-            text-align:center;
-            color:#a0a0a5;
-            font-size:16px;
-            padding:30px;
-            display:none;
+        .legal-card h2 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--accent-green);
         }
 
-        /* CONTAINER BANNER BAWAH MELAYANG PROFESIONAL */
-        .sticky-bottom-ad { 
-            position: fixed; 
-            bottom: 10px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 340px; 
-            height: 60px; 
-            background-color: #1a1a1e; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
-            z-index: 9999; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            border-radius: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 5px;
-            transition: all 0.3s ease;
+        .legal-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 14px;
         }
-        
-        /* TOMBOL TUTUP BULAT PREMIUM (FAKE CLOSE BUTTON) */
-        .close-ad-btn { 
-            position: absolute; 
-            top: -10px; 
-            right: -10px; 
-            background-color: #ef4444; 
-            color: #ffffff; 
-            border: 2px solid #121214; 
-            width: 26px; 
-            height: 26px; 
-            font-size: 12px; 
+
+        /* LOADING COMPONENT */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            width: 100%;
+        }
+
+        .css-ring-spinner {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: 3px solid rgba(0, 230, 118, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--accent-green);
+            animation: putarGaris 0.8s linear infinite;
+            margin-bottom: 12px;
+        }
+
+        @keyframes putarGaris {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text-info {
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* FOOTER DESIGN */
+        footer {
+            background-color: var(--bg-surface);
+            text-align: center;
+            padding: 24px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-bottom: 80px;
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .footer-nav {
+            display: block;
+            line-height: 1.8;
+        }
+
+        .footer-nav a {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.2s;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-dot {
+            width: 3px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 8px;
+            vertical-align: middle;
+        }
+
+        /* ADS ADSTERRA POPUP */
+        .sticky-bottom-ad {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 340px;
+            height: 60px;
+            background-color: var(--bg-surface);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: block;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            padding: 4px;
+        }
+
+        .close-ad-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff4444;
+            color: #ffffff;
+            border: 2px solid var(--bg-body);
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer; 
-            border-radius: 50%; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            transition: transform 0.2s ease, background-color 0.2s;
+            cursor: pointer;
+            border-radius: 50%;
         }
-        .close-ad-btn:hover { 
-            background-color: #dc2626; 
-            transform: scale(1.1); 
-        }
-
-        /* RESPONSIVE DESAIN (UNTUK HP) */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 68px;
-                left: 0;
-                background-color: #1a1a1e;
-                padding: 20px;
-                box-shadow: 0 8px 10px rgba(0,0,0,0.5);
-                border-bottom: 1px solid #2a2a30;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 12px 0;
-                text-align: center;
-                margin-left: 0;
-            }
-
-            .hero {
-                height: 420px;
-            }
-
-            .hero-content h1 {
-                font-size: 26px;
-            }
-
-            .hero-content .subtitle {
-                font-size: 14px;
-            }
-
-            .hero-content .badges-container {
-                gap: 10px;
-                font-size: 12px;
-            }
+        
+        .material-symbols-outlined {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
         }
     </style>
 </head>
@@ -421,319 +393,197 @@
 
     <header>
         <nav class="navbar">
-            <div class="logo">Mod<span>Core</span></div>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Apps</a></li>
-                <li><a href="footer/contact.html">Request Mod</a></li>
-            </ul>
-
-            <div class="hamburger" id="hamburgerBtn">
-                <i class="fas fa-bars"></i>
+            <div class="logo" onclick="bukaTab('tab-market')">Mod<span>Core</span></div>
+            <div class="menu-links">
+                <a onclick="bukaTab('tab-market')" id="nav-apps-link" class="active">Apps</a>
+                <a onclick="bukaHalamanHukum('contact')">Request</a>
             </div>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Temukan Aplikasi & Game Mod Terlengkap</h1>
-            <p class="subtitle">Download File APK Mod Pilihan Praktis, Cepat, dan Fitur Lengkap.</p>
-            <div class="badges-container">
-                <span class="badge-info">File Terverifikasi</span>
-                <span class="badge-info">Unduhan Cepat</span>
-                <span class="badge-info">Selalu Update</span>
-            </div>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Cari game atau aplikasi mod...">
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
+    <main class="index-tab active" id="tab-market">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="searchInput" placeholder="Cari aplikasi atau game...">
             </div>
         </div>
-    </section>
 
-    <main class="container">
-        <h2 class="section-title">Daftar Aplikasi Pilihan ModCore</h2>
+        <div class="section-header">
+            <h2 class="section-title">Aplikasi Premium</h2>
+            <span class="section-count" id="appCounter">0 Tersedia</span>
+        </div>
         
-        <div class="grid-container">
-            
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTojbRbIWqVR02n5sVGKCh267v9mbD0Prc2u-DOqojx-H2V_6hchtBgv0w&s=10" alt="KineMaster Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>KineMaster Mod</h3>
-                        <p class="mod-info">Aplikasi editor video profesional legendaris di Android yang menggunakan sistem timeline multi-layer untuk memotong, menggabungkan, dan menambahkan transisi video.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.8 <span>(4.1k)</span>
-                    </div>
-                    <a href="apps/kinemaster.html?kinemasterster" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
+        <div class="apps-list" id="appContainerList">
+            <div class="loading-container" id="dbLoader">
+                <div class="css-ring-spinner"></div>
+                <div class="loading-text-info">Memuat aplikasi...</div>
             </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://play-lh.googleusercontent.com/gRheGVxu9Ygc4lIc71bVSgjGNiZ8d-nraBqGFRm1SV-2CsD-byiqzt_8m8y8tJqyLXc" alt="PicsArt Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>PicsArt Mod</h3>
-                        <p class="mod-info">Aplikasi edit foto dan pembuatan kolase all-in-one yang dilengkapi dengan berbagai alat desain grafis, stiker, dan kuas gambar.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.7 <span>(3.2k)</span>
-                    </div>
-                    <a href="apps/picsart.html?app=picsart" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://play-lh.googleusercontent.com/M78HyakHaxKrjoeqYx41E9DXfVYYtx67nvc7Ks4G4zFQeaAJdGCi8gzzGSrHIwlrmnJS6zD9S4fAXqdEwfuHQAQ" alt="CapCut Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>CapCut Mod</h3>
-                        <p class="mod-info">Aplikasi edit video vertikal instan yang sangat populer karena menyediakan ribuan templat otomatis untuk kebutuhan konten media sosial.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.9 <span>(5.8k)</span>
-                    </div>
-                    <a href="apps/capcut.html?app=capcut" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://i.pinimg.com/1200x/e2/b7/48/e2b74811d8f20d1373ec2d085d1fcfb7.jpg" alt="Spotify Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>Spotify Mod</h3>
-                        <p class="mod-info">Modifikasi dari platform pemutar musik dan podcast digital terbesar yang menyediakan jutaan lagu dari berbagai musisi global.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.8 <span>(6.4k)</span>
-                    </div>
-                    <a href="apps/spotify.html?app=spotify" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://i.pinimg.com/1200x/0e/3b/94/0e3b94a92152d146429e9e468cdd62d6.jpg" alt="YouTube ReVanced" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>YouTube ReVanced</h3>
-                        <p class="mod-info">Aplikasi klien pihak ketiga untuk YouTube yang dimodifikasi khusus sebagai alternatif pemutar video dengan kontrol penuh bagi pengguna.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.9 <span>(7.1k)</span>
-                    </div>
-                    <a href="apps/youtube.html?app=youtube-revanced" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://i.pinimg.com/1200x/ef/55/ac/ef55acaed134cf97d2a5f9f1e4815295.jpg" alt="GBWhatsApp" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>GBWhatsApp</h3>
-                        <p class="mod-info">Versi kloningan dari WhatsApp resmi yang dimodifikasi oleh pengembang pihak ketiga untuk mengubah sistem tampilan dan batasan kirim file.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.6 <span>(4.9k)</span>
-                    </div>
-                    <a href="apps/gbwhatsapp.html?app=gbwhatsapp" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://i.pinimg.com/1200x/b2/24/bc/b224bcfb58a1861dee8afc847a5d657d.jpg" alt="Canva Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>Canva Mod</h3>
-                        <p class="mod-info">Aplikasi desain grafis instan untuk membuat poster, presentasi, logo, and konten media sosial menggunakan ribuan templat siap pakai.</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.8 <span>(3.5k)</span>
-                    </div>
-                    <a href="apps/canva.html?app=canva" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://img.icons8.com/color/1200/inshot.jpg" alt="InShot Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>InShot Mod</h3>
-                        <p class="mod-info">Aplikasi editor foto dan video kasual yang ramah pengguna, berfokus pada pengaturan rasio aspek (bisa langsung pas untuk ukuran Instagram atau TikTok).</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.7 <span>(2.1k)</span>
-                    </div>
-                    <a href="apps/inshot.html?app=inshot" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://i.pinimg.com/1200x/bc/ac/4c/bcac4cad1a3a84acd580f7f45328b173.jpg" alt="Aero Instagram" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>Aero Instagram (InstaMod)</h3>
-                        <p class="mod-info">Modifikasi aplikasi Instagram resmi yang berfokus pada penambahan fitur utilitas internal untuk memanipulasi konten di dalam feed dan Direct Message (DM).</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.7 <span>(1.9k)</span>
-                    </div>
-                    <a href="apps/instagram.html?app=aero-instagram" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <div class="card searchable-card">
-                <div>
-                    <div class="card-badge">Premium</div>
-                    <div class="card-img-container">
-                        <img src="https://i.pinimg.com/1200x/50/f2/45/50f245aba5733474089e0b453895fde8.jpg" alt="VPN Premium Mod" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <h3>VPN Premium Mod</h3>
-                        <p class="mod-info">Modifikasi aplikasi jaringan privat virtual (VPN) untuk membuka pembatasan geografis situs web serta menyembunyikan alamat IP pengguna saat berselancar di internet (ExpressVPN / NordVPN Mod).</p>
-                    </div>
-                </div>
-                <div class="card-body" style="padding-top: 0;">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> 4.9 <span>(4.3k)</span>
-                    </div>
-                    <a href="apps/vpnpremium.html?app=vpn-premium" class="btn-download"><i class="fas fa-download"></i> Download</a>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="noResults" class="no-results">
-            <i class="fas fa-search"></i>
-            <p>Data tidak ditemukan.</p>
         </div>
     </main>
 
+    <main class="index-tab" id="tab-legal">
+        <div class="legal-card" id="legalContentBox"></div>
+    </main>
+
     <footer>
-        <p>© 2026 ModCore. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="footer/privacy-policy.html">Privacy Policy</a>•<a href="footer/dmca.html">DMCA</a>•<a href="footer/disclaimer.html">Disclaimer</a>•<a href="footer/contact.html">Contact Us</a>
+        <p class="footer-copyright">© 2026 ModCore Market. All rights reserved.</p>
+        <div class="footer-nav">
+            <a onclick="bukaHalamanHukum('privacy')">Privacy Policy</a><span class="footer-dot"></span>
+            <a onclick="bukaHalamanHukum('dmca')">DMCA</a><span class="footer-dot"></span>
+            <a onclick="bukaHalamanHukum('disclaimer')">Disclaimer</a><span class="footer-dot"></span>
+            <a onclick="bukaHalamanHukum('contact')">Contact Us</a>
         </div>
     </footer>
 
     <div class="sticky-bottom-ad" id="bottomAdBox">
-        <div class="close-ad-btn" onclick="eksekusiTombolJebakan()">
-            <i class="fas fa-times"></i>
-        </div>
-        <script>
-          atOptions = {
-            'key' : '80a170ca5256e42198d17ffe1379aa02',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
+        <div class="close-ad-btn" onclick="eksekusiTombolJebakan()"><span class="material-symbols-outlined" style="font-size:14px;">close</span></div>
+        <script>atOptions = { 'key' : '80a170ca5256e42198d17ffe1379aa02', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };</script>
         <script src="https://www.highperformanceformat.com/80a170ca5256e42198d17ffe1379aa02/invoke.js"></script>
     </div>
 
     <script>
-        // 🛠️ LOGIKA BARU: Ketika tombol (X) diklik, buka Smartlink ketiga di tab baru, lalu sembunyikan iklannya
-        function eksekusiTombolJebakan() {
-            const jebakanSmartlink = "https://www.effectivecpmnetwork.com/din0zwes7n?key=6adb5ba5a0bcf9f655a70ce2a432b901";
-            window.open(jebakanSmartlink, '_blank'); // Mengarahkan ke iklan baru di tab baru
-            document.getElementById('bottomAdBox').style.display = 'none'; // Sembunyikan banner di halaman utama
-        }
+        const googleSheetApiUrl = "https://docs.google.com/spreadsheets/d/1FMu8RdrNxGsKAYF_AHU1YVJf3T2uDI9D63GTvCHrODA/export?format=csv&gid=0";
+        let allAppsData = [];
 
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const navLinks = document.getElementById('navLinks');
+        // Tautan utama khusus untuk tombol close banner bawah
+        const smartlinkUtamaAdsterra = "https://www.effectivecpmnetwork.com/din0zwes7n?key=6adb5ba5a0bcf9f655a70ce2a432b901";
 
-        hamburgerBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = hamburgerBtn.querySelector('i');
-
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const cards = document.querySelectorAll('.searchable-card');
-        const noResults = document.getElementById('noResults');
-
-        function performSearch() {
-            const keyword = searchInput.value.toLowerCase().trim();
-            let found = 0;
-
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-
-                if (text.includes(keyword)) {
-                    card.style.display = 'flex';
-                    found++;
-                } else {
-                    card.style.display = 'none';
-                }
+        fetch(googleSheetApiUrl)
+            .then(res => res.text())
+            .then(csvText => {
+                allAppsData = csvToJSON(csvText);
+                document.getElementById('dbLoader').style.display = 'none';
+                document.getElementById('appCounter').textContent = allAppsData.length + " Tersedia";
+                renderList(allAppsData);
+            })
+            .catch(() => { 
+                document.getElementById('dbLoader').innerHTML = "<div class='loading-text-info'>Gagal memproses cloud database.</div>"; 
             });
 
-            noResults.style.display = found === 0 ? 'block' : 'none';
+        function csvToJSON(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+            if (lines.length === 0) return result;
+            
+            const headers = lines[0].split(',').map(h => h.replace(/["\r]/g, "").toLowerCase().trim());
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j] ? currentline[j].replace(/["\r]/g, "").trim() : "";
+                }
+                result.push(obj);
+            }
+            return result;
         }
 
-        searchInput.addEventListener('input', performSearch);
-        searchBtn.addEventListener('click', performSearch);
+        function renderList(apps) {
+            const container = document.getElementById('appContainerList');
+            container.innerHTML = apps.map(app => {
+                const link1 = app.link_iklan ? app.link_iklan.trim() : "";
+                const link2 = app.link_iklan2 ? app.link_iklan2.trim() : "";
+                
+                const amanLink1 = link1.replace(/'/g, "\\'");
+                const amanLink2 = link2.replace(/'/g, "\\'");
 
-        searchInput.addEventListener('keypress', function(e){
-            if(e.key === 'Enter'){
-                performSearch();
+                return `
+                    <div class="app-row" onclick="bukaAplikasiTahapanKlik('${app.id}', '${amanLink1}', '${amanLink2}')" style="cursor: pointer;">
+                        <div class="icon-area">
+                            <img src="${app.icon || 'https://via.placeholder.com/60'}" class="app-icon" alt="${app.title}">
+                        </div>
+                        <div class="info-area">
+                            <div class="app-name">${app.title || 'Unknown App'}</div>
+                            <div class="app-meta-top">
+                                <span class="badge-version">${app.version || 'v1.0'}</span>
+                                <span class="badge-mod">${app.mod || 'Modded'}</span>
+                            </div>
+                            <div class="app-meta-bottom">
+                                <span class="material-symbols-outlined">hard_drive</span>
+                                <span>${app.size || '-'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function bukaAplikasiTahapanKlik(appId, urlIklan1, urlIklan2) {
+            // Menggunakan localStorage agar hitungan langkah klik dikunci permanen di sistem browser
+            let keyPenyimpanan = 'step_klik_' + appId;
+            let klikSekarang = parseInt(localStorage.getItem(keyPenyimpanan)) || 0;
+
+            klikSekarang++;
+            localStorage.setItem(keyPenyimpanan, klikSekarang);
+
+            if (klikSekarang === 1) {
+                // KLIK KE-1: Paksa buka link_iklan di tab baru
+                if (urlIklan1 !== "") {
+                    window.open(urlIklan1, '_blank');
+                    return; // Kunci alur, batalkan pengalihan halaman utama
+                } else {
+                    // Jika data di spreadsheet kosong, bypass otomatis ke tingkat selanjutnya
+                    klikSekarang = 2;
+                    localStorage.setItem(keyPenyimpanan, klikSekarang);
+                }
             }
-        });
-    </script>
 
+            if (klikSekarang === 2) {
+                // KLIK KE-2: Paksa buka link_iklan2 di tab baru
+                if (urlIklan2 !== "") {
+                    window.open(urlIklan2, '_blank');
+                    return; // Kunci alur, batalkan pengalihan halaman utama
+                }
+            }
+
+            // KLIK KE-3 (BERHASIL LOLOS):
+            // Hapus cache penyimpanan klik aplikasi agar proses mengulang jika di masa depan diklik lagi
+            localStorage.removeItem(keyPenyimpanan);
+            
+            // Pengunjung langsung dibawa masuk ke konten utama (view.html) dengan lancar!
+            window.location.href = `apps/view.html?id=${appId}`;
+        }
+
+        // CONTROL NAVIGATION ENGINE FOR INTERNAL TAB
+        function bukaTab(tabId) {
+            document.querySelectorAll('.index-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            window.scrollTo({top: 0});
+            
+            if(tabId === 'tab-market') {
+                document.getElementById('nav-apps-link').classList.add('active');
+            } else {
+                document.getElementById('nav-apps-link').classList.remove('active');
+            }
+        }
+
+        // RENDER DINAMIS PASAL HUKUM
+        function bukaHalamanHukum(jenis) {
+            const box = document.getElementById('legalContentBox');
+            if (jenis === 'privacy') {
+                box.innerHTML = `<h2>Privacy Policy</h2><p>Di ModCore, kami menjaga privasi pengunjung dengan sangat ketat...</p>`;
+            } else if (jenis === 'dmca') {
+                box.innerHTML = `<h2>DMCA Copyright Notice</h2><p>ModCore sangat menghormati hak kekayaan intelektual orang lain...</p>`;
+            } else if (jenis === 'disclaimer') {
+                box.innerHTML = `<h2>Disclaimer</h2><p>Semua informasi dan file unduhan di website ini disediakan murni sebagai sarana edukasi...</p>`;
+            } else if (jenis === 'contact') {
+                box.innerHTML = `<h2>Contact Us / Request App</h2><p>Kirimkan permohonan pesan resmi Anda melalui alamat email admin pusat kami di bawah ini:</p><p style='color:var(--accent-green); font-weight:700; font-size:15px; text-align:center; padding:10px; background:rgba(0,230,118,0.05); border-radius:10px; margin-top:10px;'>support@modcore.market</p>`;
+            }
+            bukaTab('tab-legal');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase().trim();
+            const filtered = allAppsData.filter(app => (app.title && app.title.toLowerCase().includes(val)));
+            renderList(filtered);
+            document.getElementById('appCounter').textContent = filtered.length + " Tersedia";
+        });
+
+        function eksekusiTombolJebakan() {
+            window.open(smartlinkUtamaAdsterra, '_blank'); 
+            document.getElementById('bottomAdBox').style.display = 'none'; 
+        }
+    </script>
 </body>
 </html>
