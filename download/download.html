@@ -1,1 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="meta-title">Menyiapkan Unduhan... - ModCore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-body: #0b0c0f;
+            --bg-surface: #13141a;
+            --bg-search: #1c1e24;
+            --accent-green: #00e676;
+            --text-primary: #ffffff;
+            --text-secondary: #9aa0a6;
+            --border-color: rgba(255, 255, 255, 0.04);
+        }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        body {
+            padding-bottom: 140px; /* Ditambah agar konten utama tidak tertutup oleh iklan melayang di bawah */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent;
+        }
+
+        header {
+            background-color: var(--bg-surface);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .navbar {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        .logo-left {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .logo-left span {
+            color: var(--accent-green);
+        }
+
+        .content-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* SLOT WADAH IKLAN BIASA */
+        .ad-slot-wrapper {
+            width: 100%;
+            margin: 20px auto;
+            background-color: var(--bg-surface);
+            border: 1px dashed var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot-wrapper::before {
+            content: "SPONSORED ADS";
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            margin-bottom: -4px;
+        }
+        
+        .main-download-box {
+            width: 100%;
+            margin: 10px auto;
+            padding: 30px 20px;
+            background-color: var(--bg-surface);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .app-icon-loader {
+            width: 76px;
+            height: 76px;
+            border-radius: 16px;
+            margin: 0 auto 16px auto;
+            background-color: var(--bg-search);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .app-icon-loader img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .app-ver-text {
+            font-size: 12px;
+            color: var(--accent-green);
+            background-color: rgba(0, 230, 118, 0.08);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+        
+        .timer-container {
+            padding: 24px 20px;
+            background-color: var(--bg-body);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timer-circle {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 6px;
+        }
+
+        .timer-status {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .btn-final-download {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--accent-green);
+            color: #0b0c0f;
+            padding: 15px;
+            border-radius: 28px;
+            font-weight: 800;
+            font-size: 14px;
+            width: 100%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.2);
+            transition: transform 0.1s;
+        }
+
+        .btn-final-download:active {
+            transform: scale(0.98);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #475569;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .loading-download-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .css-ring-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(0, 230, 118, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--accent-green);
+            animation: putarGaris 0.8s linear infinite;
+            margin-bottom: 14px;
+        }
+
+        @keyframes putarGaris {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text-info {
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        .ad-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 50px;
+        }
+
+        /* ⚡ STYLING IKLAN MENGAMBANG / FLOATING ADS (SEPERTI INDEX) */
+        .floating-ad-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px; /* Menyesuaikan lebar konten agar pas di tengah */
+            background-color: rgba(19, 20, 26, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid var(--border-color);
+            padding: 12px 10px 8px 10px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.6);
+        }
+
+        .floating-ad-close {
+            position: absolute;
+            top: -24px;
+            right: 10px;
+            background-color: #ff4444;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            cursor: pointer;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+        }
+    </style>
+
+    <script src="https://pl29751245.effectivecpmnetwork.com/1b/6a/ae/1b6aaef05c365930e84b8ffc5af02f92.js"></script>
+
+    <script src="https://pl30107975.effectivecpmnetwork.com/d5/6f/2d/d56f2d255948bc5b4a1e757d690e76be.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a class="logo-left" href="../index.html">Mod<span>Core</span></a>
+        </nav>
+    </header>
+
+    <div class="content-container">
+
+        <div class="ad-slot-wrapper">
+            <div class="ad-item">
+                <script>
+                  atOptions = { 'key' : '890a954fb1374ce468e7361983ac347e', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/890a954fb1374ce468e7361983ac347e/invoke.js"></script>
+            </div>
+
+            <div class="ad-item">
+                <script type="text/javascript">
+                    atOptions = { 'key' : '90a470ca5256e42198d17ffe1379aa02', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+                </script>
+                <script type="text/javascript" src="https://www.highperformanceformat.com/90a470ca5256e42198d17ffe1379aa02/invoke.js"></script>
+            </div>
+
+            <div class="ad-item">
+                <script>
+                  atOptions = { 'key' : '360637dfecf8849dfcabdfb6bb350a01', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/360637dfecf8849dfcabdfb6bb350a01/invoke.js"></script>
+            </div>
+        </div>
+
+        <main class="main-download-box">
+            
+            <div class="loading-download-container" id="loaderBox">
+                <div class="css-ring-spinner"></div>
+                <div class="loading-text-info">Memverifikasi berkas APK...</div>
+            </div>
+
+            <div id="downloadContent" style="display: none;">
+                <div class="app-icon-loader">
+                    <img id="download-icon" src="https://via.placeholder.com/76" alt="App Icon">
+                </div>
+                <h2 id="download-title">Menyiapkan File...</h2>
+                <div id="download-version" class="app-ver-text">Memproses</div>
+
+                <div class="timer-container" id="timerBox">
+                    <div class="timer-circle" id="countdownSeconds">15</div>
+                    <div class="timer-status" id="statusMessage">Menganalisis keamanan sistem tautan berkas...</div>
+                </div>
+
+                <button id="downloadActionBtn" class="btn-final-download">
+                    <span class="material-symbols-outlined">cloud_download</span> 
+                    Unduh APK Sekarang (<span id="download-size">-</span>)
+                </button>
+            </div>
+
+        </main>
+
+        <div class="ad-slot-wrapper">
+            <div class="ad-item">
+                <script>
+                  atOptions = { 'key' : '5ce2128adf0348cd97e43b7c4e3f5ad1', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/5ce2128adf0348cd97e43b7c4e3f5ad1/invoke.js"></script>
+            </div>
+
+            <div class="ad-item">
+                <script>
+                  atOptions = { 'key' : '1b48fc34e5876a0b62098a4b35566a21', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+                </script>
+                <script src="https://www.highperformanceformat.com/1b48fc34e5876a0b62098a4b35566a21/invoke.js"></script>
+            </div>
+        </div>
+
+    </div> 
+
+    <div class="floating-ad-container" id="bottomFloatingAd">
+        <button class="floating-ad-close" onclick="tutupIklanMelayang()">CLOSE [X]</button>
+        <script>
+          atOptions = { 'key' : '80a170ca5256e42198d17ffe1379aa02', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+        </script>
+        <script src="https://www.highperformanceformat.com/80a170ca5256e42198d17ffe1379aa02/invoke.js"></script>
+    </div>
+
+    <footer><p>© 2026 ModCore Market. Safe & Secure.</p></footer>
+
+    <script>
+        const googleSheetApiUrl = "https://docs.google.com/spreadsheets/d/1FMu8RdrNxGsKAYF_AHU1YVJf3T2uDI9D63GTvCHrODA/export?format=csv&gid=0";
+        const smartlinkCadangan = "https://www.effectivecpmnetwork.com/din0zwes7n?key=6adb5ba5a0bcf9f655a70ce2a432b901";
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId = urlParams.get('id');
+        let targetDownloadUrl = ""; 
+
+        if (!appId) {
+            window.location.href = "../index.html";
+        } else {
+            fetch(googleSheetApiUrl)
+                .then(res => res.text())
+                .then(csvText => {
+                    const data = csvToJSON(csvText);
+                    const appData = data.find(item => String(item.id).toLowerCase().trim() === appId.toLowerCase().trim());
+                    
+                    if (appData) {
+                        document.getElementById('meta-title').textContent = "Unduh " + appData.title + " - ModCore";
+                        document.getElementById('download-title').textContent = appData.title;
+                        document.getElementById('download-version').textContent = appData.version + " • " + appData.mod;
+                        document.getElementById('download-size').textContent = appData.size;
+                        document.getElementById('download-icon').src = appData.icon || 'https://via.placeholder.com/76';
+                        
+                        targetDownloadUrl = appData.download_link && appData.download_link.trim() !== "" ? appData.download_link.trim() : "https://www.google.com";
+
+                        document.getElementById('loaderBox').style.display = 'none';
+                        document.getElementById('downloadContent').style.display = 'block';
+
+                        startCountdown();
+                    } else {
+                        document.getElementById('loaderBox').innerHTML = "<div class='loading-text-info' style='color:#ff4444;'>Error: Berkas tidak valid.</div>";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('loaderBox').innerHTML = "<div class='loading-text-info'>Gagal memverifikasi cloud server.</div>";
+                });
+        }
+
+        function csvToJSON(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.replace(/["\r]/g, "").toLowerCase().trim());
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j] ? currentline[j].replace(/["\r]/g, "").trim() : "";
+                }
+                result.push(obj);
+            }
+            return result;
+        }
+
+        function startCountdown() {
+            let timeLeft = 15;
+            const secondsDisplay = document.getElementById('countdownSeconds');
+            const statusDisplay = document.getElementById('statusMessage');
+            const actionBtn = document.getElementById('downloadActionBtn');
+            
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                secondsDisplay.textContent = timeLeft;
+                if(timeLeft === 10) statusDisplay.textContent = "Memindai file berkas dari virus malware berbahaya...";
+                if(timeLeft === 5) statusDisplay.textContent = "Menghubungkan ke server enkripsi unduhan berkecepatan tinggi...";
+                
+                if(timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timerBox').style.display = 'none';
+                    actionBtn.style.display = 'flex';
+                    
+                    actionBtn.onclick = function() {
+                        eksekusiKlikFinal(appId);
+                    };
+                }
+            }, 1000);
+        }
+
+        function eksekusiKlikFinal(idAplikasi) {
+            let storageKey = 'tombol_download_klik_' + idAplikasi;
+            let statusKlik = parseInt(localStorage.getItem(storageKey)) || 0;
+
+            statusKlik++;
+            localStorage.setItem(storageKey, statusKlik);
+
+            if (statusKlik === 1) {
+                window.open(smartlinkCadangan, '_blank');
+                return;
+            }
+
+            localStorage.removeItem(storageKey);
+            window.location.href = targetDownloadUrl;
+        }
+
+        // FUNGSI UNTUK MENUTUP IKLAN MELAYANG
+        function tutupIklanMelayang() {
+            document.getElementById('bottomFloatingAd').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
