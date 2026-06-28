@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /plugins/
+Disallow: /assets/
+
+Sitemap: https://modcore.space/sitemap.xml
