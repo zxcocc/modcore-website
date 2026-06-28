@@ -7,10 +7,13 @@
     <link rel="icon" type="image/jpeg" href="https://modcore.space/favicon.jpg">
     <meta property="og:title" content="ModCore - Premium App Market">
     <meta property="og:description" content="Temukan dan unduh berbagai aplikasi serta game modifikasi premium terlengkap secara gratis dan aman.">
+    
+    <!-- UKURAN GAMBAR PRATINJAU DISESUAIKAN JADI 1910x1000 -->
     <meta property="og:image" content="https://modcore.space/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="500">
-    <meta property="og:image:height" content="500">
+    <meta property="og:image:width" content="1910">
+    <meta property="og:image:height" content="1000">
+    
     <meta property="og:url" content="https://modcore.space/">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -478,7 +481,7 @@
             const headers = lines[0].split(',').map(h => h.replace(/["\r]/g, "").toLowerCase().trim());
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i].trim()) continue;
-                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const currentline = lines[i].split(/,(?=(?:(?:[^3]*"){2})*[^"]*$)/);
                 const obj = {};
                 for (let j = 0; j < headers.length; j++) {
                     obj[headers[j]] = currentline[j] ? currentline[j].replace(/["\r]/g, "").trim() : "";
